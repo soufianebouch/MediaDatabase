@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MediaLibrary.Models.ListFilmsViewModel>
+
+@{
+    ViewData["Title"] = "FilmsList";
+}
+
+<h1>FilmsList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Regisseur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Regisseur)
+            </td>
+            <td>
+                @if (item.Foto == null)
+                {
+                    <p>Geen foto beschikbaar</p>
+                }
+                else
+                {
+                    var base64 = Convert.ToBase64String(item.Foto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                    <div>
+                        <img src="@imgSrc" alt="Alternate Text" />
+
+                    </div>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "FilmDelete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
