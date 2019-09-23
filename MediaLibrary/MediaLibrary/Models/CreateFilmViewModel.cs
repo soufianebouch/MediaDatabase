@@ -12,6 +12,7 @@ namespace MediaLibrary.Models
         [Required(ErrorMessage = "Titel is verplicht")]
         public string Titel { get; set; }
         public string Regisseur { get; set; }
+        public bool Hidden { get; set; }
         public IFormFile Foto { get; set; }
     }
 }

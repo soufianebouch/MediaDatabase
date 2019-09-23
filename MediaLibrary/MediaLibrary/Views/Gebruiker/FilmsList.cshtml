@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MediaLibrary.Models.ListFilmsViewModel>
+
+@{
+    ViewData["Title"] = "FilmsList";
+}
+
+<h1>FilmsList</h1>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="FilmsList" asp-controller="Admin">Admin List</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Regisseur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Hidden == true)
+            {
+                <tr><td>Dit item is niet beschikbaaar</td></tr>
+            }
+            else
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Regisseur)
+                    </td>
+                    <td>
+                        @if (item.Foto == null)
+                        {
+                            <p>Geen foto beschikbaar</p>
+                        }
+                        else
+                        {
+                            var base64 = Convert.ToBase64String(item.Foto);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                            <div>
+                                <img src="@imgSrc" alt="Alternate Text" />
+
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td> <a asp-action="FilmDetail" asp-controller="Admin" asp-route-id="@item.Id">Details </a> </td>
+                    <td> <a asp-action="FilmDelete" asp-controller="Admin" asp-route-id="@item.Id">Delete</a> </td>
+                    <td> <a asp-action="FilmEdit" asp-controller="Admin" asp-route-id="@item.Id">Edit</a> </td>
+                    <td> <a asp-action="FilmReview" asp-controller="Admin" asp-route-id="@item.Id">Review</a> </td>
+                    <td> <a asp-action="FilmGezien" asp-controller="Admin" asp-route-id="@item.Id">Gezien?</a> </td>
+
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>

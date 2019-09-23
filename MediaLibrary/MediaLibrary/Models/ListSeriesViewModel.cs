@@ -11,6 +11,8 @@ namespace MediaLibrary.Models
         public string Titel { get; set; }
         public string Seizoen { get; set; }
         public int HoeveelAfl { get; set; }
+        public bool Hidden { get; set; }
+
         public byte[] Foto { get; set; }
     }
 }

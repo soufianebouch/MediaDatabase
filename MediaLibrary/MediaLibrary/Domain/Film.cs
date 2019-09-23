@@ -13,6 +13,7 @@ namespace MediaLibrary.Domain
         public string Titel { get; set; }
         public string Regisseur { get; set; }
         public byte[] Foto { get; set; }
+        public bool Hidden { get; set; }
         public ICollection<RatingFilm> Ratings { get; set; }
         public ICollection<UserFilmGezienStatus> UserFilmGezienStatuses { get; set; }
         public ICollection<UserFilmAfspeelLijst> FilmUserAfspeelLijst { get; set; }

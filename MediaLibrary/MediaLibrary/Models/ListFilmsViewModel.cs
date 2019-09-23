@@ -10,6 +10,9 @@ namespace MediaLibrary.Models
         public int Id { get; set; }
         public string Titel { get; set; }
         public string Regisseur { get; set; }
+        public bool Hidden { get; set; }
         public byte[] Foto { get; set; }
+        public string Status { get; set; }
+
     }
 }

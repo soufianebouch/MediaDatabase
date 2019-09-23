@@ -1,0 +1,30 @@
+﻿@model MediaLibrary.Models.ReviewMedia.GezienFilmViewModel
+
+@{
+    ViewData["Title"] = "FilmGezien";
+}
+
+<h1>FilmGezien</h1>
+
+<h4>GezienFilmViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FilmGezien">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SelectedStatus"></label>
+                <select asp-for="SelectedStatus" asp-items="Model.Statuses"></select>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

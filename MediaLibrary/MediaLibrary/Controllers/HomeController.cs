@@ -22,6 +22,11 @@ namespace MediaLibrary.Controllers
         {
             return View();
         }
+       
+        public IActionResult MediaCreate()
+        {
+            return View();
+        }
         public IActionResult CreateFilm()
         {
             return View();
@@ -38,6 +43,7 @@ namespace MediaLibrary.Controllers
             Film film = new Film();
             film.Regisseur = model.Regisseur;
             film.Titel = model.Titel;
+            film.Hidden = model.Hidden;
             if (model.Foto != null)
             {
                 using (MemoryStream stream = new MemoryStream())

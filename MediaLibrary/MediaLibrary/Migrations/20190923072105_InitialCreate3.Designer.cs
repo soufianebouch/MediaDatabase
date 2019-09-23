@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MediaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190920114608_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20190923072105_InitialCreate3")]
+    partial class InitialCreate3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,8 @@ namespace MediaLibrary.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Foto");
+
+                    b.Property<bool>("Hidden");
 
                     b.Property<string>("Regisseur");
 
@@ -93,6 +95,8 @@ namespace MediaLibrary.Migrations
 
                     b.Property<byte[]>("Foto");
 
+                    b.Property<bool>("Hidden");
+
                     b.Property<string>("Titel")
                         .HasMaxLength(100);
 
@@ -126,6 +130,8 @@ namespace MediaLibrary.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Foto");
+
+                    b.Property<bool>("Hidden");
 
                     b.Property<int>("Lengte");
 
@@ -230,6 +236,8 @@ namespace MediaLibrary.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Foto");
+
+                    b.Property<bool>("Hidden");
 
                     b.Property<int>("HoeveelAfl");
 

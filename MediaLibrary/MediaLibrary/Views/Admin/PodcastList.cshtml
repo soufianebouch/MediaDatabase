@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Foto)
             </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Hidden)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -50,9 +53,12 @@
                 }
             </td>
             <td>
+                @Html.DisplayFor(Model => item.Hidden)
+            </td>
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "PodcastDelete", new {  id=item.Id  })
+                @Html.ActionLink("Delete", "PodcastDelete", new { id = item.Id })
             </td>
         </tr>
 }

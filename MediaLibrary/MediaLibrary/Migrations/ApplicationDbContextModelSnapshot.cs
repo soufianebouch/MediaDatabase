@@ -27,6 +27,8 @@ namespace MediaLibrary.Migrations
 
                     b.Property<byte[]>("Foto");
 
+                    b.Property<bool>("Hidden");
+
                     b.Property<string>("Regisseur");
 
                     b.Property<string>("Titel")
@@ -91,6 +93,8 @@ namespace MediaLibrary.Migrations
 
                     b.Property<byte[]>("Foto");
 
+                    b.Property<bool>("Hidden");
+
                     b.Property<string>("Titel")
                         .HasMaxLength(100);
 
@@ -124,6 +128,8 @@ namespace MediaLibrary.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Foto");
+
+                    b.Property<bool>("Hidden");
 
                     b.Property<int>("Lengte");
 
@@ -228,6 +234,8 @@ namespace MediaLibrary.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Foto");
+
+                    b.Property<bool>("Hidden");
 
                     b.Property<int>("HoeveelAfl");
 

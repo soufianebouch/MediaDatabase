@@ -13,6 +13,7 @@ namespace MediaLibrary.Domain
         public string Titel { get; set; }
         public int Lengte { get; set; }
         public byte[] Foto { get; set; }
+        public bool Hidden { get; set; }
         public ICollection<RatingPodcast> Ratings { get; set; }
         public ICollection<UserPodcastGeluisterdStatus> UserPodcastGeluisterdStatuses { get; set; }
         public ICollection<UserPodcastAfspeellijst> PodcastUserAfspeelLijst { get; set; }

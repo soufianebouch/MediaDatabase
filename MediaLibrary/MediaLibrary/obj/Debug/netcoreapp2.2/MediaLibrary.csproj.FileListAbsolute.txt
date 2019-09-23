@@ -44,3 +44,17 @@ C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\PodcastDelete.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\MuziekDelete.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\SerieDelete.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\FilmEdit.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\MuziekEdit.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Home\MediaCreate.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Lijst\Index.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Lijst\CreateFilmAfspeellijst.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Lijst\CreateMuziekAfspeellijst.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\FilmReview.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\MuziekReview.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\FilmGezien.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\FilmDetail.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\FilmsList.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\Media.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\Afspeellijsten.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\FilmsAfspeelLijsten.g.cshtml.cs

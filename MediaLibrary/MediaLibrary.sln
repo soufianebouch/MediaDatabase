@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaLibrary", "MediaLibrary\MediaLibrary.csproj", "{1C853D18-45D7-4A05-90B5-8208C82D30F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaLibrary", "MediaLibrary\MediaLibrary.csproj", "{1C853D18-45D7-4A05-90B5-8208C82D30F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MediaLibrary.Migrations
 {
-    public partial class InitialCreate2 : Migration
+    public partial class InitialCreate3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,8 @@ namespace MediaLibrary.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Titel = table.Column<string>(maxLength: 100, nullable: true),
                     Regisseur = table.Column<string>(nullable: true),
-                    Foto = table.Column<byte[]>(nullable: true)
+                    Foto = table.Column<byte[]>(nullable: true),
+                    Hidden = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -111,7 +112,8 @@ namespace MediaLibrary.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Titel = table.Column<string>(maxLength: 100, nullable: true),
                     Artiest = table.Column<string>(nullable: true),
-                    Foto = table.Column<byte[]>(nullable: true)
+                    Foto = table.Column<byte[]>(nullable: true),
+                    Hidden = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -156,7 +158,8 @@ namespace MediaLibrary.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Titel = table.Column<string>(maxLength: 100, nullable: true),
                     Lengte = table.Column<int>(nullable: false),
-                    Foto = table.Column<byte[]>(nullable: true)
+                    Foto = table.Column<byte[]>(nullable: true),
+                    Hidden = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,7 +190,8 @@ namespace MediaLibrary.Migrations
                     Titel = table.Column<string>(maxLength: 100, nullable: true),
                     Seizoen = table.Column<string>(nullable: true),
                     HoeveelAfl = table.Column<int>(nullable: false),
-                    Foto = table.Column<byte[]>(nullable: true)
+                    Foto = table.Column<byte[]>(nullable: true),
+                    Hidden = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

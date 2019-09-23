@@ -1,0 +1,52 @@
+﻿@model MediaLibrary.Models.Afspeellijst.CreateFilmAfspeellijst
+
+@{
+    ViewData["Title"] = "CreateMuziekAfspeellijst";
+}
+
+<h1>CreateMuziekAfspeellijst</h1>
+
+<h4>CreateFilmAfspeellijst</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateMuziekAfspeellijst">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Titel" class="control-label"></label>
+                <input asp-for="Titel" class="form-control" />
+                <span asp-validation-for="Titel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beschrijving" class="control-label"></label>
+                <input asp-for="Beschrijving" class="form-control" />
+                <span asp-validation-for="Beschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Privé"></label>
+                <input asp-for="Privé" type="checkbox" />
+            </div>
+            <div class="form-group">
+                <strong>Muziek</strong>
+                <p>
+                    @for (int i = 0; i < Model.Films.Count; i++)
+                    {
+                        <label> @Model.Films[i].Naam</label>
+                        <input asp-for="@Model.Films[i].Checked" type="checkbox" />
+                        <input asp-for="@Model.Films[i].Id" type="hidden" />
+                        <input asp-for="@Model.Films[i].Naam" type="hidden" />
+                    }
+                </p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
