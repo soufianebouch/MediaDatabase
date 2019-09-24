@@ -8,6 +8,7 @@ using MediaLibrary.Domain;
 using MediaLibrary.Models;
 using MediaLibrary.Models.Afspeellijst;
 using MediaLibrary.Models.ReviewMedia;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -93,6 +94,7 @@ namespace MediaLibrary.Controllers
             {
                 model.Add(new ListFilmAfspeellijstViewModel
                 {
+                    Id =item.Id,
                     Titel = item.Titel,
                     Beschrijving = item.Beschrijving,
                     Privé = item.Privé
@@ -101,6 +103,72 @@ namespace MediaLibrary.Controllers
 
             return View(model);
         }
-        
+        public IActionResult FilmsAfspeelLijstDelete(int id)
+        {
+            FilmAfspeellijst afspeellijstFromDb = _DbContext.FilmAfspeellijsts.FirstOrDefault(a => a.Id == id);
+            DeleteFilmAfspeellijstViewModel film = new DeleteFilmAfspeellijstViewModel();
+            film.Titel = afspeellijstFromDb.Titel;
+            film.Id = afspeellijstFromDb.Id;
+            return View(film);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult FilmAfspeellijstConfirmDelete(int id)
+        {
+            FilmAfspeellijst afspeellijstFromDb = _DbContext.FilmAfspeellijsts.FirstOrDefault(a => a.Id == id);
+            _DbContext.FilmAfspeellijsts.Remove(afspeellijstFromDb);
+            _DbContext.SaveChanges();
+
+            return RedirectToAction("FilmsAfspeelLijsten");
+        }
+        public IActionResult FilmAfspeellijstDetail(int Id)
+        {
+            List<FilmAfspeellijstDetailViewModel> models = new List<FilmAfspeellijstDetailViewModel>();
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            FilmAfspeellijst afspeellijst = _DbContext.FilmAfspeellijsts.
+                Include(a=>a.UserFilmAfspeelLijsts).
+                ThenInclude(b=> b.Film).
+                FirstOrDefault(a => a.Id == Id);
+            foreach (var item in afspeellijst.UserFilmAfspeelLijsts)
+            {
+                models.Add(new FilmAfspeellijstDetailViewModel
+                {
+                    AfspeellijstId = Id,
+                    Id=item.FilmId,
+                    Titel=item.Film.Titel,
+                    Regisseur = item.Film.Regisseur
+                });
+            }
+            return View(models);
+        }
+        public IActionResult DeleteFilmInAfspeellijst(int Id, int AfspeellijstId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            UserFilmAfspeelLijst filmFromDb = _DbContext.UserFilmAfspeelLijsts.
+                Include(a=>a.Film).
+                FirstOrDefault(a => a.UserId == userId && a.FilmId == Id && a.AfspeelLijstId == AfspeellijstId);
+            DeleteFilmAfspeellijstViewModel film = new DeleteFilmAfspeellijstViewModel();
+            film.AfspeellijsId = AfspeellijstId;
+            film.Titel = filmFromDb.Film.Titel;
+            film.Id = filmFromDb.Film.Id;
+            return View(film);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult ConfirmDeleteFilmInAfspeellijst(int Id, int AfspeellijsId )
+        {
+            int test = AfspeellijsId;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            UserFilmAfspeelLijst filmFromDb = _DbContext.UserFilmAfspeelLijsts.
+                Include(a => a.Film).
+                FirstOrDefault(a => a.UserId == userId && a.FilmId == Id && a.AfspeelLijstId == AfspeellijsId);
+            _DbContext.UserFilmAfspeelLijsts.Remove(filmFromDb);
+            _DbContext.SaveChanges();
+
+
+            return RedirectToAction("FilmAfspeellijstDetail", new { id = test });
+        }
     }
 }

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MediaLibrary.Models.Afspeellijst.FilmAfspeellijstDetailViewModel>
+
+@{
+    ViewData["Title"] = "FilmAfspeellijstDetail";
+}
+
+<h1>FilmAfspeellijstDetail</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Regisseur)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Regisseur)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "FilmDetail", "Admin", new { id = item.Id })
+                    @Html.ActionLink("Delete", "DeleteFilmInAfspeellijst", new { id = item.Id, AfspeellijstId=item.AfspeellijstId })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<a asp-action="FilmsAfspeelLijsten">Back to List</a>
+

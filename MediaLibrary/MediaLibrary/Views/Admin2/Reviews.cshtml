@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MediaLibrary.Models.ListReviewsFilmModel>
+
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<h1>Reviews</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MediaNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Review)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "ReviewDelete", new { MediaId=item.MediaId, Userid=item.UserId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" asp-controller="Admin">Back</a>

@@ -25,23 +25,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Beschrijving)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Privé)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Privé)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "FilmAfspeellijstDetail", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "FilmsAfspeelLijstDelete", new { id = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<a asp-action="Afspeellijsten">Back</a>
+

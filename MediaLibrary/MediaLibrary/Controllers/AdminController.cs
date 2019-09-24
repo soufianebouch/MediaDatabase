@@ -506,13 +506,6 @@ namespace MediaLibrary.Controllers
         }
 
 
-        public IActionResult Afspeellijsten()
-        {
-            return View();
-        }
-        public IActionResult Gebruikers()
-        {
-            return View();
-        }
+     
     }
 }
