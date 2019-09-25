@@ -6,9 +6,16 @@
 
 <h1>FilmsAfspeelLijsten</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-action="FilmsAfspeelLijsten" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn-secondary" /> |
+            <a asp-action="FilmsAfspeelLijsten">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>

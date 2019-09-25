@@ -13,7 +13,6 @@ C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\MediaLibrary.RazorCoreGenerate.cache
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
-C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
@@ -68,3 +67,4 @@ C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin2\GebruikerDelete.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin2\Reviews.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin2\ReviewDelete.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\MuziekList.g.cshtml.cs

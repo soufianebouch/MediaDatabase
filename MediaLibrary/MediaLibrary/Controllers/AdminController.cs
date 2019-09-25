@@ -32,11 +32,12 @@ namespace MediaLibrary.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Media()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult FilmsList()
         {
             List<ListFilmsViewModel> movies = new List<ListFilmsViewModel>();

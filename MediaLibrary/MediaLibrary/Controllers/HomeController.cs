@@ -8,6 +8,7 @@ using MediaLibrary.Models;
 using MediaLibrary.Data;
 using MediaLibrary.Domain;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediaLibrary.Controllers
 {
@@ -27,11 +28,13 @@ namespace MediaLibrary.Controllers
         {
             return View();
         }
+        [Authorize]
         public IActionResult CreateFilm()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateFilm(CreateFilmViewModel model)
         {
             Film checkfilm = _DbContext.Films.FirstOrDefault(a => a.Titel == model.Titel);
@@ -58,11 +61,12 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         public IActionResult CreateSerie()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult CreateSerie(CreateSerieViewModel model)
         {
@@ -84,11 +88,12 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         public IActionResult CreateMuziek()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult CreateMuziek(CreateMuziekViewModel model)
         {
@@ -108,11 +113,12 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         public IActionResult CreatePodcast()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult CreatePodcast(CreatePodcastViewModel model)
         {
@@ -133,14 +139,6 @@ namespace MediaLibrary.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

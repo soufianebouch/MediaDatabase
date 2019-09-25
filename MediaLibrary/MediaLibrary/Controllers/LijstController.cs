@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MediaLibrary.Data;
 using MediaLibrary.Domain;
 using MediaLibrary.Models.Afspeellijst;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,11 +21,12 @@ namespace MediaLibrary.Controllers
             _DbContext = ctx;
         }
         // GET: /<controller>/
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public IActionResult CreateFilmAfspeellijst()
         {
             List<Film> filmsFromDb = new List<Film>();
@@ -57,6 +59,7 @@ namespace MediaLibrary.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateFilmAfspeellijst(CreateFilmAfspeellijst model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -89,6 +92,7 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("Index");
         }
+        [Authorize]
         public IActionResult CreateMuziekAfspeellijst()
         {
             List<Muziek> filmsFromDb = new List<Muziek>();
@@ -112,6 +116,7 @@ namespace MediaLibrary.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateMuziekAfspeellijst(CreateFilmAfspeellijst model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

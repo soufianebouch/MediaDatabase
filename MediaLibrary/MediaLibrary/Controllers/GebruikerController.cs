@@ -10,6 +10,7 @@ using MediaLibrary.Models.Afspeellijst;
 using MediaLibrary.Models.ReviewMedia;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -71,13 +72,16 @@ namespace MediaLibrary.Controllers
 
             return View(movies);
         }
-
+        [Authorize]
         public IActionResult Afspeellijsten()
         {
             return View();
         }
-        public IActionResult FilmsAfspeelLijsten()
+        [Authorize]
+        public IActionResult FilmsAfspeelLijsten(string searchString)
         {
+            
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             List<UserFilmAfspeelLijst> filmAfspeelLijsten = _DbContext.UserFilmAfspeelLijsts.Where(a => a.UserId == userId).ToList();
@@ -90,19 +94,44 @@ namespace MediaLibrary.Controllers
             }
             List<ListFilmAfspeellijstViewModel> model = new List<ListFilmAfspeellijstViewModel>();
 
+            //SEARCH
+            ViewData["CurrentFilter"] = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Listafspeelijsts = Listafspeelijsts.Where(a => a.Titel.Contains(searchString)).ToList();
+            }
+
+            //List<SelectListItem> privacy = new List<SelectListItem>();
+            //privacy.Add(new SelectListItem()
+            //{
+            //    Text = "Privé",
+            //    Value = "Privé"
+            //});
+            //privacy.Add(new SelectListItem()
+            //{
+            //    Text = "Publiek",
+            //    Value = "Publiek"
+            //});
+            //SEARCH
+
             foreach (var item in Listafspeelijsts)
             {
                 model.Add(new ListFilmAfspeellijstViewModel
                 {
-                    Id =item.Id,
+                    Id = item.Id,
                     Titel = item.Titel,
                     Beschrijving = item.Beschrijving,
                     Privé = item.Privé
+                    
                 });
             }
+            
+
 
             return View(model);
         }
+        [Authorize]
         public IActionResult FilmsAfspeelLijstDelete(int id)
         {
             FilmAfspeellijst afspeellijstFromDb = _DbContext.FilmAfspeellijsts.FirstOrDefault(a => a.Id == id);
@@ -121,6 +150,7 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("FilmsAfspeelLijsten");
         }
+        [Authorize]
         public IActionResult FilmAfspeellijstDetail(int Id)
         {
             List<FilmAfspeellijstDetailViewModel> models = new List<FilmAfspeellijstDetailViewModel>();
@@ -142,6 +172,7 @@ namespace MediaLibrary.Controllers
             }
             return View(models);
         }
+        [Authorize]
         public IActionResult DeleteFilmInAfspeellijst(int Id, int AfspeellijstId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -170,5 +201,36 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("FilmAfspeellijstDetail", new { id = test });
         }
+        public IActionResult MuziekList(int id)
+        {
+            List<ListMuziekViewModel> muziek = new List<ListMuziekViewModel>();
+
+            IEnumerable<Muziek> projectsFromDb =
+                _DbContext.Muziek;
+            string status = "Niet geluisterd";
+            //STATUS 1 GEBRUIKER 1 FILM
+            //UserFilmGezienStatus userFilmGezienStatus = GetStatus(item.Id);
+            //
+            //if (userFilmGezienStatus != null)
+            //{
+            //    status = userFilmGezienStatus.GezienStatus.Naam;
+            //}
+            foreach (var item in projectsFromDb)
+            {
+                muziek.Add(new ListMuziekViewModel()
+                {
+                    Titel = item.Titel,
+                    Artiest = item.Artiest,
+                    Foto = item.Foto,
+                    Id = item.Id,
+                    Hidden = item.Hidden,
+                    Status=status
+                });
+            }
+
+            return View(muziek);
+        }
+
+        
     }
 }

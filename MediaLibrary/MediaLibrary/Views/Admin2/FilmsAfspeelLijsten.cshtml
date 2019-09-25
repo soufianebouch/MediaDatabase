@@ -18,33 +18,51 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beschrijving)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Privé)
-            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Privé)
+                </th>
+            }
+
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Beschrijving)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Privé)
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "FilmsAfspeelLijstDelete", new { id = item.Id })
-                </td>
-            </tr>
+            @if (item.Privé == false || User.IsInRole("Admin"))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Beschrijving)
+                    </td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Privé)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Delete", "FilmsAfspeelLijstDelete", new { id = item.Id })
+                        </td>
+                    }
+
+                </tr>
+            }
         }
     </tbody>
 </table>
-<a asp-action="Afspeellijsten">Back</a>
+@if (User.IsInRole("Admin"))
+{
+    <a asp-action="Afspeellijsten">Back to afspeellijsten</a>
+}
+<br />
+    <a asp-action="Media" asp-controller="Gebruiker">Back</a>
+

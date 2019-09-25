@@ -23,11 +23,11 @@ namespace MediaLibrary.Controllers
             _DbContext = ctx;
         }
         // GET: /<controller>/
+        [Authorize(Roles = "Admin")]
         public IActionResult Afspeellijsten()
         {
             return View();
         }
-
         public IActionResult FilmsAfspeelLijsten()
         {
             List<FilmAfspeellijst> Listafspeelijsts = _DbContext.FilmAfspeellijsts.ToList();
@@ -46,6 +46,7 @@ namespace MediaLibrary.Controllers
             }
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult FilmsAfspeelLijstDelete(int id)
         {
             FilmAfspeellijst afspeellijstFromDb = _DbContext.FilmAfspeellijsts.FirstOrDefault(a => a.Id == id);
@@ -55,7 +56,7 @@ namespace MediaLibrary.Controllers
             return View(film);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult FilmAfspeellijstConfirmDelete(int id)
         {
             FilmAfspeellijst afspeellijstFromDb = _DbContext.FilmAfspeellijsts.FirstOrDefault(a => a.Id == id);
@@ -65,7 +66,7 @@ namespace MediaLibrary.Controllers
             return RedirectToAction("FilmsAfspeelLijsten");
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Gebruikers()
         {
             List<ListGebruikersViewModel> gebruikers = new List<ListGebruikersViewModel>();
@@ -81,6 +82,7 @@ namespace MediaLibrary.Controllers
             }
             return View(gebruikers);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult GebruikerDelete(string Id)
         {
             var user = _DbContext.Users.FirstOrDefault(a=>a.Id == Id);
@@ -90,7 +92,7 @@ namespace MediaLibrary.Controllers
             return View(model);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult GebruikerConfirmDelete(string Id)
         {
             var user = _DbContext.Users.FirstOrDefault(a => a.Id == Id);
@@ -100,7 +102,7 @@ namespace MediaLibrary.Controllers
             return RedirectToAction("Gebruikers");
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Reviews()
         {
             List<ListReviewsFilmModel> reviews = new List<ListReviewsFilmModel>();
@@ -171,6 +173,7 @@ namespace MediaLibrary.Controllers
 
             return View(reviews);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult ReviewDelete( int MediaId, string UserId)
         {
             DeleteReviewViewModel reviewToDelete = new DeleteReviewViewModel();
@@ -202,7 +205,7 @@ namespace MediaLibrary.Controllers
             return View(reviewToDelete);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult ReviewConfirmDelete(int id, string UserId)
         {
             RatingFilm ratingFilm = _DbContext.RatingFilms.FirstOrDefault(a => a.FilmId == id && a.UserId == UserId);
