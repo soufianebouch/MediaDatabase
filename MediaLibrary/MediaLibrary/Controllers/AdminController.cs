@@ -461,7 +461,62 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("MuziekList");
         }
+        public IActionResult MuziekDetail(int id)
+        {
+            //ALLE STATUSSEN VAN 1 FILM
+            IEnumerable<UserMuziekGeluisterdStatus> statuses =
+                _DbContext.userMuziekGeluisterdStatuses
+                .Include(userFilmGezienStatus => userFilmGezienStatus.GeluisterdStatus)
+                .Where(userFilmGezienStatus => userFilmGezienStatus.MuziekId == id).ToList();
+            //
+            int gezien = 0;
+            int wilZien = 0;
 
+            foreach (var status in statuses)
+            {
+                if (status.GeluisterdStatus.Id == 3)
+                {
+                    wilZien++;
+                }
+                if (status.GeluisterdStatus.Id == 2)
+                {
+                    gezien++;
+                }
+            }
+
+            Muziek muziekFromDb = _DbContext.Muziek.
+                Include(a => a.Ratings).
+                FirstOrDefault(a => a.Id == id);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            //VOOR REVIEW VAN 1 GEBRUIKER TE ZIEN
+            //var review = filmFromDb.Ratings.FirstOrDefault(a => a.FilmId == filmFromDb.Id && a.UserId == userId);
+            //
+            List<string> reviews = new List<string>();
+            List<int> scores = new List<int>();
+
+            var review = muziekFromDb.Ratings.Where(a => a.MuziekId == muziekFromDb.Id).ToList();
+
+            foreach (var item in review)
+            {
+                reviews.Add(item.Review);
+                scores.Add(item.Score);
+            }
+
+            MuziekDetailViewModel muziek = new MuziekDetailViewModel()
+            {
+                Titel = muziekFromDb.Titel,
+                Artiest = muziekFromDb.Artiest,
+                Reviews = reviews,
+                Scores = scores,
+                Foto = muziekFromDb.Foto,
+                Gezien = gezien,
+                WillenZien = wilZien
+            };
+
+            return View(muziek);
+        }
 
 
         public IActionResult SeriesList()

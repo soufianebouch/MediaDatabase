@@ -42,13 +42,17 @@ namespace MediaLibrary.Controllers
         {
             return View();
         }
-        public IActionResult FilmsList(int id)
+        public IActionResult FilmsList(int id, string searchString)
         {
+            
             List<ListFilmsViewModel> movies = new List<ListFilmsViewModel>();
 
             IEnumerable<Film> projectsFromDb =
                 _DbContext.Films;
-
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                projectsFromDb = projectsFromDb.Where(a => a.Titel.Contains(searchString)).ToList();
+            }
             foreach (var item in projectsFromDb)
             {
                 string status = "Niet gezien";
@@ -150,12 +154,10 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("FilmsAfspeelLijsten");
         }
-        [Authorize]
         public IActionResult FilmAfspeellijstDetail(int Id)
         {
             List<FilmAfspeellijstDetailViewModel> models = new List<FilmAfspeellijstDetailViewModel>();
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             FilmAfspeellijst afspeellijst = _DbContext.FilmAfspeellijsts.
                 Include(a=>a.UserFilmAfspeelLijsts).
                 ThenInclude(b=> b.Film).
@@ -201,20 +203,18 @@ namespace MediaLibrary.Controllers
 
             return RedirectToAction("FilmAfspeellijstDetail", new { id = test });
         }
-        public IActionResult MuziekList(int id)
+        public IActionResult MuziekList(int id, string searchString)
         {
             List<ListMuziekViewModel> muziek = new List<ListMuziekViewModel>();
 
             IEnumerable<Muziek> projectsFromDb =
                 _DbContext.Muziek;
             string status = "Niet geluisterd";
-            //STATUS 1 GEBRUIKER 1 FILM
-            //UserFilmGezienStatus userFilmGezienStatus = GetStatus(item.Id);
-            //
-            //if (userFilmGezienStatus != null)
-            //{
-            //    status = userFilmGezienStatus.GezienStatus.Naam;
-            //}
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                projectsFromDb = projectsFromDb.Where(a => a.Titel.Contains(searchString)).ToList();
+            }
+           
             foreach (var item in projectsFromDb)
             {
                 muziek.Add(new ListMuziekViewModel()
@@ -230,7 +230,32 @@ namespace MediaLibrary.Controllers
 
             return View(muziek);
         }
+        public IActionResult PodcastList(int id, string searchString)
+        {
+            List<ListPodcastsViewModel> muziek = new List<ListPodcastsViewModel>();
 
-        
+            IEnumerable<Podcast> projectsFromDb =
+                _DbContext.Podcasts;
+            string status = "Niet geluisterd";
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                projectsFromDb = projectsFromDb.Where(a => a.Titel.Contains(searchString)).ToList();
+            }
+            
+            foreach (var item in projectsFromDb)
+            {
+                muziek.Add(new ListPodcastsViewModel()
+                {
+                    Titel = item.Titel,
+                    Lengte = item.Lengte,
+                    Foto = item.Foto,
+                    Status =status,
+                    Id = item.Id
+                });
+            }
+
+            return View(muziek);
+        }
+
     }
 }

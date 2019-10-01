@@ -1,4 +1,12 @@
 ﻿@model IEnumerable<MediaLibrary.Models.ListFilmsViewModel>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/List.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 @{
     ViewData["Title"] = "FilmsList";
@@ -11,6 +19,13 @@
         <a asp-action="FilmsList" asp-controller="Admin">Admin List</a>
     </p>
 }
+<form asp-action="FilmsList" method="get">
+    <div class="search-box">
+        <i class="material-icons" >&#xE8B6;</i>
+        <input type="text" class="form-control" placeholder="Search&hellip;" name="SearchString" value="@ViewData["currentFilter"]">
+        
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -72,11 +87,11 @@
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                     }
-                    <td> <a asp-action="FilmDetail" asp-controller="Admin" asp-route-id="@item.Id">Details </a> </td>
+                    <td> <a class="view" asp-action="FilmDetail" asp-controller="Admin" asp-route-id="@item.Id"><i class="material-icons">&#xE417;</i></a> </td>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <td> <a asp-action="FilmDelete" asp-controller="Admin" asp-route-id="@item.Id">Delete</a> </td>
-                        <td> <a asp-action="FilmEdit" asp-controller="Admin" asp-route-id="@item.Id">Edit</a> </td>
+                        <td> <a class="delete" asp-action="FilmDelete" asp-controller="Admin" asp-route-id="@item.Id"><i class="material-icons">&#xE872;</i></a> </td>
+                        <td> <a class="edit" asp-action="FilmEdit" asp-controller="Admin" asp-route-id="@item.Id"><i class="material-icons">&#xE254;</i></a> </td>
                         <td> <a asp-action="FilmReview" asp-controller="Admin" asp-route-id="@item.Id">Review</a> </td>
                         <td> <a asp-action="FilmGezien" asp-controller="Admin" asp-route-id="@item.Id">Gezien?</a> </td>
                     }

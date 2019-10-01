@@ -16,7 +16,7 @@
                 <label asp-for="SelectedStatus"></label>
                 <select asp-for="SelectedStatus" asp-items="Model.Statuses"></select>
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Confirm" class="btn btn-primary" />
             </div>
@@ -24,7 +24,13 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <a asp-action="FilmsList">Back to List (Admin)</a>
+    </div>
+}
 
+<div>
+    <a asp-action="FilmsList" asp-controller="Gebruiker">Back to List</a>
+</div>

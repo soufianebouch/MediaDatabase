@@ -1,0 +1,95 @@
+﻿@model IEnumerable<MediaLibrary.Models.ListPodcastsViewModel>
+
+@{
+    ViewData["Title"] = "PodcastList";
+}
+
+<h1>PodcastList</h1>
+
+<form asp-action="PodcastList" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn-secondary" /> |
+            <a asp-action="PodcastList">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lengte) (minuten)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Hidden == true)
+            {
+                <tr><td>Dit item is niet beschikbaaar</td></tr>
+            }
+            else
+            {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Titel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lengte)
+        </td>
+
+
+        <td>
+            @if (item.Foto == null)
+            {
+                <p>Geen foto beschikbaar</p>
+            }
+            else
+            {
+                var base64 = Convert.ToBase64String(item.Foto);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                <div>
+                    <img src="@imgSrc" alt="Alternate Text" />
+
+                </div>
+            }
+        </td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        }
+        <td> <a asp-action="PodcastDetail" asp-controller="Admin" asp-route-id="@item.Id">Details </a> </td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <td> <a asp-action="PodcastDelete" asp-controller="Admin" asp-route-id="@item.Id">Delete</a> </td>
+            <td> <a asp-action="PodcastEdit" asp-controller="Admin" asp-route-id="@item.Id">Edit</a> </td>
+            <td> <a asp-action="PodcastReview" asp-controller="Admin" asp-route-id="@item.Id">Review</a> </td>
+            <td> <a asp-action="PodcastGeluisterd" asp-controller="Admin" asp-route-id="@item.Id">Beluisterd?</a> </td>
+        }
+    </tr>
+            }
+        }
+    </tbody>
+</table>
+<a asp-action="Media" asp-controller="Gebruiker">Back</a>

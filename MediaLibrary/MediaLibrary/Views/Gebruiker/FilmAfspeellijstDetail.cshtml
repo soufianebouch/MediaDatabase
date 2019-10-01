@@ -37,12 +37,22 @@
                 </td>
                 <td>
                     @Html.ActionLink("Details", "FilmDetail", "Admin", new { id = item.Id })
-                    @Html.ActionLink("Delete", "DeleteFilmInAfspeellijst", new { id = item.Id, AfspeellijstId=item.AfspeellijstId })
                 </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteFilmInAfspeellijst", new { id = item.Id, AfspeellijstId = item.AfspeellijstId })
+                    </td>
+                }
             </tr>
         }
     </tbody>
 
 </table>
-<a asp-action="FilmsAfspeelLijsten">Back to List</a>
+@if (User.Identity.IsAuthenticated)
+{
+<a asp-action="FilmsAfspeelLijsten">Back to Mijn film Afspeellijsten</a>
+}
+<br />
+<a asp-action="FilmsAfspeelLijsten" asp-controller="Admin2">Back to afspeellijsten</a>
 

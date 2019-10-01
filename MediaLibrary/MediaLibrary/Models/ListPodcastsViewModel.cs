@@ -11,7 +11,7 @@ namespace MediaLibrary.Models
         public string Titel { get; set; }
         public int Lengte { get; set; }
         public bool Hidden { get; set; }
-
+        public string Status { get; set; }
         public byte[] Foto { get; set; }
     }
 }

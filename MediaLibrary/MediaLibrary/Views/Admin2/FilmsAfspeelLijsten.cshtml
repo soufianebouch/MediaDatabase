@@ -53,7 +53,9 @@
                             @Html.ActionLink("Delete", "FilmsAfspeelLijstDelete", new { id = item.Id })
                         </td>
                     }
-
+                    <td>
+                        @Html.ActionLink("Detail", "FilmAfspeellijstDetail", "Gebruiker", new { id = item.Id })
+                    </td>
                 </tr>
             }
         }
@@ -64,5 +66,5 @@
     <a asp-action="Afspeellijsten">Back to afspeellijsten</a>
 }
 <br />
-    <a asp-action="Media" asp-controller="Gebruiker">Back</a>
+<a asp-action="Media" asp-controller="Gebruiker">Back</a>
 

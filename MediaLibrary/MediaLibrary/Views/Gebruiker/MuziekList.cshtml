@@ -5,7 +5,15 @@
 }
 
 <h1>MuziekList</h1>
-
+<form asp-action="MuziekList" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn-secondary" /> |
+            <a asp-action="MuziekList">Back to Full List</a>
+        </p>
+    </div>
+</form>
 
 <table class="table">
     <thead>
