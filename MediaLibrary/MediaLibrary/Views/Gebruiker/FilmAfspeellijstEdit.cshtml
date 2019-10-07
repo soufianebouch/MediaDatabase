@@ -1,16 +1,16 @@
 ﻿@model MediaLibrary.Models.Afspeellijst.CreateFilmAfspeellijst
 
 @{
-    ViewData["Title"] = "CreateAfspeellijst";
+    ViewData["Title"] = "FilmAfspeellijstEdit";
 }
 
-<h1>CreateAfspeellijst</h1>
+<h1>FilmAfspeellijstEdit</h1>
 
-<h4>CreateFilmAfspeellijst</h4>
+<h4>Film afspeellijst aanpassen</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateFilmAfspeellijst">
+        <form asp-action="FilmAfspeellijstEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Titel" class="control-label"></label>
@@ -22,9 +22,10 @@
                 <input asp-for="Beschrijving" class="form-control" />
                 <span asp-validation-for="Beschrijving" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Privé"></label>
-                <input asp-for="Privé" type="checkbox" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Privé" /> @Html.DisplayNameFor(model => model.Privé)
+                </label>
             </div>
             <div class="form-group">
                 <strong>Films</strong>
@@ -39,14 +40,12 @@
                 </p>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-
         </form>
     </div>
 </div>
 <div>
     <a asp-action="FilmsAfspeelLijsten">Back to Mijn film Afspeellijsten</a>
-</div>
-
+    </div>
 

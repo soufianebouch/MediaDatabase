@@ -177,16 +177,14 @@ namespace MediaLibrary.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             GezienFilmViewModel model = new GezienFilmViewModel();
 
-            IEnumerable<UserFilmGezienStatus> statusestest =
+            UserFilmGezienStatus statusestest =
                 _DbContext.UserFilmGezienStatuses
                 .Include(a => a.GezienStatus)
-                .Where(a => a.UserId == userId).ToList();
+                .FirstOrDefault(a => a.UserId == userId && a.FilmId == id);
 
-            UserFilmGezienStatus userFilmGezienStatus = statusestest.FirstOrDefault(x => x.FilmId == id);
-            if (userFilmGezienStatus != null)
-            {
-                model.SelectedStatus = userFilmGezienStatus.GezienStatus.Naam;
-            }
+
+            model.SelectedStatus = statusestest.GezienStatus.Naam;
+
 
             List<GezienStatus> statusesFromDb = new List<GezienStatus>();
 
@@ -562,6 +560,6 @@ namespace MediaLibrary.Controllers
         }
 
 
-     
+
     }
 }

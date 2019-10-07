@@ -5,6 +5,14 @@
 }
 
 <h1>FilmsAfspeelLijsten</h1>
+<form asp-action="FilmsAfspeelLijsten" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn-secondary" /> 
+        </p>
+    </div>
+</form>
 
 <table class="table">
     <thead>

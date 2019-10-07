@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace MediaLibrary.Models.ReviewMedia
 {
-    public class GezienFilmViewModel
+    public class GeluisterdMuziekViewModel
     {
         public string SelectedStatus { get; set; }
         public List<SelectListItem> Statuses { get; set; }
-        
     }
 }

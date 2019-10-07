@@ -29,7 +29,14 @@
     </div>
 </div>
 
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <a asp-action="MuziekList">Back to List (Admin)</a>
+    </div>
+}
+
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="MuziekList" asp-controller="Gebruiker">Back to List</a>
 </div>
 

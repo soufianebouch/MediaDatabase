@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediaLibrary.Domain;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,5 +15,8 @@ namespace MediaLibrary.Models
         public bool Hidden { get; set; }
         public string Status { get; set; }
         public byte[] Foto { get; set; }
+        public string SelectedStatus { get; set; }
+        public List<SelectListItem> Statuses { get; set; }
+      
     }
 }

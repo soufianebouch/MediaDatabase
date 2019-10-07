@@ -70,3 +70,4 @@ C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\MuziekList.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Admin\MuziekDetail.g.cshtml.cs
 C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\PodcastList.g.cshtml.cs
+C:\Users\Student\source\repos\MediaDatabase\MediaLibrary\MediaLibrary\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\FilmAfspeellijstEdit.g.cshtml.cs

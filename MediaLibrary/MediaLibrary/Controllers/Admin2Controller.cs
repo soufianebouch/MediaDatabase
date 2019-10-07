@@ -28,10 +28,17 @@ namespace MediaLibrary.Controllers
         {
             return View();
         }
-        public IActionResult FilmsAfspeelLijsten()
+        public IActionResult FilmsAfspeelLijsten(string searchString)
         {
+
             List<FilmAfspeellijst> Listafspeelijsts = _DbContext.FilmAfspeellijsts.ToList();
-            
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Listafspeelijsts = Listafspeelijsts.Where(a => a.Titel.Contains(searchString)).ToList();
+                ViewData["currentFilter"] = searchString;
+            }
+
             List<ListFilmAfspeellijstViewModel> model = new List<ListFilmAfspeellijstViewModel>();
 
             foreach (var item in Listafspeelijsts)
