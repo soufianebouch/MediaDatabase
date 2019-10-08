@@ -13,10 +13,9 @@ namespace MediaLibrary.Models
         public string Titel { get; set; }
         public string Artiest { get; set; }
         public bool Hidden { get; set; }
-        public string Status { get; set; }
+        public string CurrentStatus { get; set; }
         public byte[] Foto { get; set; }
-        public string SelectedStatus { get; set; }
-        public List<SelectListItem> Statuses { get; set; }
+        
       
     }
 }

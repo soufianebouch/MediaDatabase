@@ -1,5 +1,5 @@
-﻿@model IEnumerable<MediaLibrary.Models.ListMuziekViewModel>
-
+﻿@model MediaLibrary.Models.MainListMuziekViewModel
+@namespace System.Linq
 @{
     ViewData["Title"] = "MuziekList";
 }
@@ -19,26 +19,26 @@
         <tr>
 
             <th>
-                @Html.DisplayNameFor(model => model.Titel)
+                Naam
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Artiest)
+                Artiest
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Foto)
+                Foto
             </th>
-            
+
             @if (User.Identity.IsAuthenticated)
             {
                 <th>
-                    @Html.DisplayNameFor(model => model.Status)
+                    Status
                 </th>
             }
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Songs)
         {
             if (item.Hidden == true)
             {
@@ -76,8 +76,13 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <td>
+
                             <div class="form-group">
-                                <select asp-for=@item.SelectedStatus asp-items=@item.Statuses></select>
+                                <form id="postform" asp-controller="Gebruiker" asp-action="MuziekGeluisterd" asp-route-id="@item.Id" method="post">
+                                    @{Model.SelectedStatus = item.CurrentStatus;}
+                                    <select  asp-for=SelectedStatus asp-items=@Model.Statuses class="form-control"></select>
+                                    <input type="submit" value="Save" class="btn btn-primary" onclick="MuziekGeluisterd()" />
+                                </form>
                             </div>
                         </td>
                     }

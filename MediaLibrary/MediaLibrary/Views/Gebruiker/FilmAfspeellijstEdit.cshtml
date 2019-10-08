@@ -45,7 +45,10 @@
         </form>
     </div>
 </div>
-<div>
+@if (User.Identity.IsAuthenticated)
+{
     <a asp-action="FilmsAfspeelLijsten">Back to Mijn film Afspeellijsten</a>
-    </div>
+}
+<br />
+<a asp-action="FilmsAfspeelLijsten" asp-controller="Admin2">Back to afspeellijsten</a>
 

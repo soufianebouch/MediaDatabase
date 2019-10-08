@@ -295,10 +295,11 @@ namespace MediaLibrary.Controllers
         }
         public IActionResult MuziekList(string searchString)
         {
+            MainListMuziekViewModel main = new MainListMuziekViewModel();
+
             List<ListMuziekViewModel> muziek = new List<ListMuziekViewModel>();
 
             //STATUSSEN
-
             List<SelectListItem> statuses = new List<SelectListItem>();
 
             foreach (var item in _DbContext.GeluisterdStatuses)
@@ -309,9 +310,6 @@ namespace MediaLibrary.Controllers
                     Value = item.Naam
                 });
             }
-            
-
-
             //STATUSSEN
 
             IEnumerable<Muziek> projectsFromDb =
@@ -325,7 +323,7 @@ namespace MediaLibrary.Controllers
 
             foreach (var item in projectsFromDb)
             {
-                string status = "Niet geluisterd";
+                string status = "Nog niet geluisterd";
 
                 if (User.Identity.IsAuthenticated)
                 {
@@ -348,12 +346,46 @@ namespace MediaLibrary.Controllers
                     Foto = item.Foto,
                     Id = item.Id,
                     Hidden = item.Hidden,
-                    SelectedStatus = status,
-                    Statuses = statuses,
-                });
+                    CurrentStatus = status
+                }
+                );
+                main.Songs = muziek;
+                main.SelectedStatus = status;
+                main.Statuses = statuses;
             }
+            
 
-            return View(muziek);
+            return View(main);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult MuziekGeluisterd(int id, MainListMuziekViewModel model)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //List<ListMuziekViewModel> models = model.Songs;
+            //ListMuziekViewModel song = model.Songs.FirstOrDefault(a => a.Id == id);
+
+            UserMuziekGeluisterdStatus statusesFromDb =
+                       _DbContext.userMuziekGeluisterdStatuses
+                       .Include(a => a.GeluisterdStatus)
+                       .FirstOrDefault(a => a.UserId == userId && a.MuziekId == id);
+            if (statusesFromDb != null)
+            {
+                _DbContext.userMuziekGeluisterdStatuses.Remove(statusesFromDb);
+            }
+            GeluisterdStatus tetet = _DbContext.GeluisterdStatuses.
+                FirstOrDefault(a => a.Naam == model.SelectedStatus);
+            UserMuziekGeluisterdStatus statuss = new UserMuziekGeluisterdStatus()
+            {
+                UserId = userId,
+                MuziekId = id,
+                GeluisterdStatusId = tetet.Id
+            };
+
+            _DbContext.userMuziekGeluisterdStatuses.Add(statuss);
+            _DbContext.SaveChanges();
+
+            return RedirectToAction("MuziekList");
         }
         public IActionResult PodcastList(string searchString)
         {
