@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<MediaLibrary.Models.Afspeellijst.ListFilmAfspeellijstViewModel>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/css/js/kickstart.js"></script>
+<link rel="stylesheet" href="~/css/css/kickstart.css" media="all" />
 @{
     ViewData["Title"] = "FilmsAfspeelLijsten";
 }
@@ -10,7 +12,7 @@
     <div class="form-actions no-color">
         <p>
             Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Search" class="btn-secondary" /> 
+            <input type="submit" value="Search" class="btn-secondary" />
         </p>
     </div>
 </form>

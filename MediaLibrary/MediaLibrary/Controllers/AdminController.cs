@@ -182,8 +182,11 @@ namespace MediaLibrary.Controllers
                 .Include(a => a.GezienStatus)
                 .FirstOrDefault(a => a.UserId == userId && a.FilmId == id);
 
-
+            if (statusestest != null)
+            {
             model.SelectedStatus = statusestest.GezienStatus.Naam;
+
+            }
 
 
             List<GezienStatus> statusesFromDb = new List<GezienStatus>();

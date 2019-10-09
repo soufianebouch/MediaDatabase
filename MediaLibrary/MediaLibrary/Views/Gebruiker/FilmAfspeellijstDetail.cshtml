@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<MediaLibrary.Models.Afspeellijst.FilmAfspeellijstDetailViewModel>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/css/js/kickstart.js"></script>
+<link rel="stylesheet" href="~/css/css/kickstart.css" media="all" />
 @{
     ViewData["Title"] = "FilmAfspeellijstDetail";
 }
@@ -51,7 +53,7 @@
 </table>
 @if (User.Identity.IsAuthenticated)
 {
-<a asp-action="FilmsAfspeelLijsten">Back to Mijn film Afspeellijsten</a>
+    <a asp-action="FilmsAfspeelLijsten">Back to Mijn film Afspeellijsten</a>
 }
 <br />
 <a asp-action="FilmsAfspeelLijsten" asp-controller="Admin2">Back to afspeellijsten</a>

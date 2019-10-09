@@ -31,9 +31,9 @@
         </dd>
     </dl>
     
-    <form asp-action="ReviewConfirmDelete" asp-route-id="@Model.MediaId"> 
+    <form asp-action="ReviewConfirmDelete" asp-route-id="@Model.MediaId">
         @Html.HiddenFor(x => x.UserId)
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a href='javascript:history.go(-1)'>Back</a>
     </form>
 </div>

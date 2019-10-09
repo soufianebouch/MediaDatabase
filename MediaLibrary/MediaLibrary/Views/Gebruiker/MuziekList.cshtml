@@ -1,4 +1,8 @@
 ﻿@model MediaLibrary.Models.MainListMuziekViewModel
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/css/js/kickstart.js"></script>
+<link rel="stylesheet" href="~/css/css/kickstart.css" media="all" />
+
 @namespace System.Linq
 @{
     ViewData["Title"] = "MuziekList";
@@ -80,7 +84,7 @@
                             <div class="form-group">
                                 <form id="postform" asp-controller="Gebruiker" asp-action="MuziekGeluisterd" asp-route-id="@item.Id" method="post">
                                     @{Model.SelectedStatus = item.CurrentStatus;}
-                                    <select  asp-for=SelectedStatus asp-items=@Model.Statuses class="form-control"></select>
+                                    <select asp-for=SelectedStatus asp-items=@Model.Statuses class="form-control"></select>
                                     <input type="submit" value="Save" class="btn btn-primary" onclick="MuziekGeluisterd()" />
                                 </form>
                             </div>

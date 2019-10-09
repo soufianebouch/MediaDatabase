@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<MediaLibrary.Models.ListPodcastsViewModel>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/css/js/kickstart.js"></script>
+<link rel="stylesheet" href="~/css/css/kickstart.css" media="all" />
 @{
     ViewData["Title"] = "PodcastList";
 }
@@ -47,47 +49,47 @@
             }
             else
             {
-    <tr>
+                <tr>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Titel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lengte)
-        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lengte)
+                    </td>
 
 
-        <td>
-            @if (item.Foto == null)
-            {
-                <p>Geen foto beschikbaar</p>
-            }
-            else
-            {
-                var base64 = Convert.ToBase64String(item.Foto);
-                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <td>
+                        @if (item.Foto == null)
+                        {
+                            <p>Geen foto beschikbaar</p>
+                        }
+                        else
+                        {
+                            var base64 = Convert.ToBase64String(item.Foto);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-                <div>
-                    <img src="@imgSrc" alt="Alternate Text" />
+                            <div>
+                                <img src="@imgSrc" alt="Alternate Text" />
 
-                </div>
-            }
-        </td>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-        }
-        <td> <a asp-action="PodcastDetail" asp-controller="Admin" asp-route-id="@item.Id">Details </a> </td>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <td> <a asp-action="PodcastDelete" asp-controller="Admin" asp-route-id="@item.Id">Delete</a> </td>
-            <td> <a asp-action="PodcastEdit" asp-controller="Admin" asp-route-id="@item.Id">Edit</a> </td>
-            <td> <a asp-action="PodcastReview" asp-controller="Admin" asp-route-id="@item.Id">Review</a> </td>
-            <td> <a asp-action="PodcastGeluisterd" asp-controller="Admin" asp-route-id="@item.Id">Beluisterd?</a> </td>
-        }
-    </tr>
+                            </div>
+                        }
+                    </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    }
+                    <td> <a asp-action="PodcastDetail" asp-controller="Admin" asp-route-id="@item.Id">Details </a> </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td> <a asp-action="PodcastDelete" asp-controller="Admin" asp-route-id="@item.Id">Delete</a> </td>
+                        <td> <a asp-action="PodcastEdit" asp-controller="Admin" asp-route-id="@item.Id">Edit</a> </td>
+                        <td> <a asp-action="PodcastReview" asp-controller="Admin" asp-route-id="@item.Id">Review</a> </td>
+                        <td> <a asp-action="PodcastGeluisterd" asp-controller="Admin" asp-route-id="@item.Id">Beluisterd?</a> </td>
+                    }
+                </tr>
             }
         }
     </tbody>

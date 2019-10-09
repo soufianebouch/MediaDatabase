@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<MediaLibrary.Models.ListReviewsFilmModel>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/css/js/kickstart.js"></script>
+<link rel="stylesheet" href="~/css/css/kickstart.css" media="all" />
 @{
     ViewData["Title"] = "Reviews";
 }
@@ -42,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.Score)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "ReviewDelete", new { MediaId=item.MediaId, Userid=item.UserId })
+                    @Html.ActionLink("Delete", "ReviewDelete", new { MediaId = item.MediaId, Userid = item.UserId })
                 </td>
             </tr>
         }

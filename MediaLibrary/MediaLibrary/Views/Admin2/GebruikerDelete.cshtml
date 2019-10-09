@@ -25,8 +25,8 @@
         </dd>
     </dl>
     
-    <form asp-action="GebruikerConfirmDelete"  asp-route-id="@Model.Id">
+    <form asp-action="GebruikerConfirmDelete" asp-route-id="@Model.Id">
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Gebruikers">Back to List</a>
+        <a href='javascript:history.go(-1)'>Back</a>
     </form>
 </div>

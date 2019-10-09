@@ -21,9 +21,9 @@
 }
 <form asp-action="FilmsList" method="get">
     <div class="search-box">
-        <i class="material-icons" >&#xE8B6;</i>
+        <i class="material-icons">&#xE8B6;</i>
         <input type="text" class="form-control" placeholder="Search&hellip;" name="SearchString" value="@ViewData["currentFilter"]">
-        
+
     </div>
 </form>
 <table class="table">
@@ -101,5 +101,6 @@
             }
         }
     </tbody>
+    <a href='javascript:history.go(-1)'>Back</a>
+
 </table>
-<a asp-action="Media" asp-controller="Gebruiker">Back</a>

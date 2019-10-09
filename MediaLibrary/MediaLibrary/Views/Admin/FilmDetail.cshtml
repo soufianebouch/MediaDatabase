@@ -1,4 +1,7 @@
 ﻿@model MediaLibrary.Models.DetailMedia.FilmDetailViewModel
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/css/js/kickstart.js"></script>
+<link rel="stylesheet" href="~/css/css/kickstart.css" media="all" />
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @{int score = 0; }
@@ -6,7 +9,7 @@
     ViewData["Title"] = "FilmDetail";
 }
 
-    <h1>@Model.Titel</h1>
+<h1>@Model.Titel</h1>
 
 <strong>Title</strong>
 <p>@Model.Titel</p>
@@ -68,7 +71,7 @@ else
     </div>
 }
 
-    <div>
-        <a asp-action="FilmsList" asp-controller="Gebruiker">Back to List</a>
-    </div>
+<div>
+    <a asp-action="FilmsList" asp-controller="Gebruiker">Back to List</a>
+</div>
 
